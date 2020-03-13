@@ -11,7 +11,7 @@ import java.util.Base64;
 public class Java_AES_Cipher {
 
     private static String CIPHER_NAME = "AES/CBC/PKCS5PADDING";
-    private static int CIPHER_KEY_LEN = 16; //128 bits
+    private static int CIPHER_KEY_LEN = 32; //128 bits
 
     public static String encrypt(String key, String iv, String data) {
         try {

@@ -48,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
         EditText  password_input = (EditText)findViewById(R.id.password_input);
         String username = String.valueOf(username_input.getText().toString());
         String password = String.valueOf(password_input.getText().toString());
-        String encrypt_username = AES.encrypt(username, secretKey);
-        String encrypt_password = AES.encrypt(password, secretKey);
-        String encrypt_twice = AES.encrypt(username+password, secretKey);
+
+
+        String encrypt_username = AES.encrypt(username, secretKey) ;
+        String encrypt_password = AES.encrypt(password, secretKey) ;
+        String encrypt_twice = AES.encrypt(username+password, secretKey) ;
         String android_id = Secure.getString(this.getContentResolver(), Secure.ANDROID_ID);
-
-
 
 
         System.out.println(encrypt_username);
@@ -62,9 +62,6 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(android_id.toString());
 
 
-
-
-       /*
 
         if (TextUtils.isEmpty(username)) {
             username_input.setError("გთხოვთ ჩაწეროთ მომხმარებელი");
@@ -80,17 +77,17 @@ public class MainActivity extends AppCompatActivity {
 
         try{
 
-            callvolly(username, password);
+            callvolly(encrypt_username, encrypt_password, encrypt_twice);
 
         } catch (Exception e){
 
         }
-        */
+
 
 
     }
 
-    public void callvolly(final String username, final String password){
+    public void callvolly(final String username, final String password, final String device_id){
         RequestQueue MyRequestQueue = Volley.newRequestQueue(this);
         String url = "https://itweb.ge/secret/index.php"; // <----enter your post url here
         StringRequest MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -113,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 Map<String, String> MyData = new HashMap<String, String>();
                 MyData.put("username", username);
                 MyData.put("password", password);
+                MyData.put("device_id", device_id);
                 return MyData;
             }
         };

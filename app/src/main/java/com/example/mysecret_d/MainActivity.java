@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import android.provider.Settings.Secure;
+
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,32 +36,88 @@ public class MainActivity extends AppCompatActivity {
         main_header.setTypeface(custom_font);
         username_input.setTypeface(custom_font);
         password_input.setTypeface(custom_font);
+    }
+
+
+
+
+    public void login(View v){
+
+        final String secretKey = "AFD156A2DE9235B264F7F248B96F6";
+        EditText  username_input = (EditText)findViewById(R.id.username_input);
+        EditText  password_input = (EditText)findViewById(R.id.password_input);
+        String username = String.valueOf(username_input.getText().toString());
+        String password = String.valueOf(password_input.getText().toString());
+        String encrypt_username = AES.encrypt(username, secretKey);
+        String encrypt_password = AES.encrypt(password, secretKey);
+        String encrypt_twice = AES.encrypt(username+password, secretKey);
+        String android_id = Secure.getString(this.getContentResolver(), Secure.ANDROID_ID);
+
+
+
+
+        System.out.println(encrypt_username);
+        System.out.println(encrypt_password);
+        System.out.println(encrypt_twice);
+        System.out.println(android_id.toString());
+
+
+
+
+       /*
+
+        if (TextUtils.isEmpty(username)) {
+            username_input.setError("გთხოვთ ჩაწეროთ მომხმარებელი");
+            username_input.requestFocus();
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            password_input.setError("გთხოვთ ჩაწეროთ პაროლი");
+            password_input.requestFocus();
+            return;
+        }
+
+        try{
+
+            callvolly(username, password);
+
+        } catch (Exception e){
+
+        }
+        */
 
 
     }
 
-    public void login(View v){
+    public void callvolly(final String username, final String password){
+        RequestQueue MyRequestQueue = Volley.newRequestQueue(this);
+        String url = "https://itweb.ge/secret/index.php"; // <----enter your post url here
+        StringRequest MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //This code is executed if the server responds, whether or not the response contains data.
+                //The String 'response' contains the server's response.
+                Log.d("Result", "Good");
+                Log.d("Result", response.toString());
 
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="https://www.google.com";
-// Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        Log.d("Passuxi", response.substring(0,500));
-
-                    }
-                }, new Response.ErrorListener() {
+            }
+        }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("shecdoma", error.toString());
+                //This code is executed if there is an error.
+                Log.d("Result", "Bad");
             }
-        });
+        }) {
+            protected Map<String, String> getParams() {
+                Map<String, String> MyData = new HashMap<String, String>();
+                MyData.put("username", username);
+                MyData.put("password", password);
+                return MyData;
+            }
+        };
 
-// Add the request to the RequestQueue.
-        queue.add(stringRequest);
 
+        MyRequestQueue.add(MyStringRequest);
     }
 }

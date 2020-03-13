@@ -1,0 +1,2 @@
+rootProject.name='MySecret-D'
+include ':app'

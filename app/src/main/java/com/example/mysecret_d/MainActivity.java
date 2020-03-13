@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //TextView  header_text = (TextView)findViewById(R.id.header_text);
+        TextView  main_header = (TextView)findViewById(R.id.main_header);
       //  TextView  app_name = (TextView)findViewById(R.id.app_name);
         EditText  username_input = (EditText)findViewById(R.id.username_input);
         EditText  password_input = (EditText)findViewById(R.id.password_input);
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/bpg-banner-caps-webfont.ttf");
 
 
-        //header_text.setTypeface(custom_font);
+        main_header.setTypeface(custom_font);
        // app_name.setTypeface(custom_font);
         username_input.setTypeface(custom_font);
         password_input.setTypeface(custom_font);

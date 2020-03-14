@@ -7,6 +7,7 @@
     android:background="@color/Main_color"
     tools:context=".MainActivity">
 
+
     <EditText
         android:id="@+id/password_input"
         android:layout_width="910px"
@@ -23,20 +24,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username_input" />
 
+
+    <EditText
+        android:id="@+id/password_input2"
+        android:layout_width="910px"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_txt_password"
+        android:hint="პაროლი"
+        android:inputType="textPassword"
+        android:paddingLeft="60dp"
+        android:textSize="40px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_input" />
+
     <TextView
         android:id="@+id/main_header"
         android:layout_width="210dp"
         android:layout_height="60dp"
         android:gravity="center"
-        android:text="ავტორიზაცია"
+        android:text="რეგისტრაცია"
         android:textColor="@android:color/background_light"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.254" />
+        app:layout_constraintVertical_bias="0.175" />
 
     <EditText
         android:id="@+id/username_input"
@@ -85,27 +103,15 @@
 
     <Button
         android:id="@+id/button2_login"
-        android:layout_width="117dp"
-        android:layout_height="46dp"
+        android:layout_width="144dp"
+        android:layout_height="47dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/my_button_bg"
-        android:text="შესვლა"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_input" />
-
-    <TextView
-        android:id="@+id/Registration_link"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="24dp"
+        android:onClick="Registration_void"
         android:text="რეგისტრაცია"
-        android:onClick="onClick"
-        android:textColor="@android:color/background_light"
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/button2_login"
-        app:layout_constraintTop_toBottomOf="@+id/password_input" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_input2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

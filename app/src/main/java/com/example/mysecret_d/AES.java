@@ -17,8 +17,8 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class AES {
 
-    private static String secretKey = "boooooooooom!!!!";
-    private static String salt = "ssshhhhhhhhhhh!!!!";
+    private static String secretKey = "gensecreti";
+    private static String salt = "ahameda";
 
     @SuppressLint("NewApi")
     public static String encrypt(String strToEncrypt, String secret)
